@@ -8,7 +8,13 @@ import java.util.StringJoiner;
  * Class that represent commit in our branches and repository.
  */
 public class Commit{
+    /**
+     * Author of commit.
+     */
     private final String author;
+    /**
+     * Changes in this commit.
+     */
     private final String[] changes;
 
     /**

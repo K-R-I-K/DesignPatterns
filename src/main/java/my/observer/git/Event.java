@@ -8,8 +8,17 @@ import java.util.StringJoiner;
  * Class that represent event in our repository.
  */
 public class Event {
+    /**
+     * Type of event
+     */
     private final Type type;
+    /**
+     * Name of branch in which happens this event.
+     */
     private final String branch;
+    /**
+     * List of commits which represent this event.
+     */
     private final List<Commit> commits;
 
     /**
