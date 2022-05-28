@@ -1,5 +1,9 @@
-package my.startegy.cards;
+package my.iterator.cards;
 
+import my.startegy.cards.Card;
+import my.startegy.cards.CardDealingStrategies;
+import my.startegy.cards.CardDealingStrategy;
+import my.startegy.cards.Deck;
 import org.junit.Test;
 
 import java.util.ArrayList;

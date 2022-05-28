@@ -4,29 +4,39 @@ import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 
+/**
+ * Class that represent event in our repository.
+ */
 public class Event {
-    private Type type;
-    private String branch;
-    private List<Commit> commits;
+    private final Type type;
+    private final String branch;
+    private final List<Commit> commits;
 
+    /**
+     * Constructor of Event class.
+     * @param type Type of event.
+     * @param branch Branch of event.
+     * @param commits List of commits.
+     */
     public Event(final Type type, final String branch, final List<Commit> commits) {
         this.type = type;
         this.branch = branch;
         this.commits = commits;
     }
 
-    Type type() {
-        return type;
-    }
-
-    String branch() {
-        return branch;
-    }
-
+    /**
+     * Getter to list of commits.
+     * @return return list of commits.
+     */
     List<Commit> commits() {
         return commits;
     }
 
+    /**
+     * Overriding of equals method.
+     * @param o object to compare.
+     * @return True if objects are equal. And false in another.
+     */
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
@@ -39,6 +49,10 @@ public class Event {
         return Objects.equals(commits, event.commits);
     }
 
+    /**
+     * Overriding of hashCode() method.
+            * @return hash code of this object.
+     */
     @Override
     public int hashCode() {
         int result = type != null ? type.hashCode() : 0;
@@ -47,11 +61,18 @@ public class Event {
         return result;
     }
 
+    /**
+     * Enum that represent type of event.
+     */
     enum Type {
         COMMIT,
         MERGE
     }
 
+    /**
+     * Overriding of toString() method.
+     * @return string that represent this object.
+     */
     @Override
     public String toString() {
         return new StringJoiner(", ", Event.class.getSimpleName() + "[", "]")

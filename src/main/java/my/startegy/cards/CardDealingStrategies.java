@@ -2,7 +2,15 @@ package my.startegy.cards;
 
 import java.util.*;
 
+/**
+ * It lets define a family of algorithms, put each of them into a separate class, and make their objects interchangeable.
+ */
 public class CardDealingStrategies {
+    /**
+     * Method that returns a CardDealingStrategy for Texas Hold'em Poker.
+     * 2 cards per player, 5 cards in additional "Community" stack.
+     * @return Specific strategy.
+     */
     public static CardDealingStrategy texasHoldemCardDealingStrategy() {
         return (deck, players) -> {
             Map<String, List<Card>> cards = new HashMap<>();
@@ -21,6 +29,11 @@ public class CardDealingStrategies {
         };
     }
 
+    /**
+     * Method that returns a CardDealingStrategy for Classic Poker.
+     * 5 cards per player, no additional stacks.
+     * @return Specific strategy.
+     */
     public static CardDealingStrategy classicPokerCardDealingStrategy() {
         return (deck, players) -> {
             Map<String, List<Card>> cards = new HashMap<>();
@@ -35,6 +48,11 @@ public class CardDealingStrategies {
         };
     }
 
+    /**
+     * Method that returns a CardDealingStrategy for Bridge.
+     * 13 cards per player, no additional stacks.
+     * @return Specific strategy.
+     */
     public static CardDealingStrategy bridgeCardDealingStrategy(){
         return (deck, players) -> {
             Map<String, List<Card>> cards = new HashMap<>();
@@ -48,6 +66,11 @@ public class CardDealingStrategies {
         };
     }
 
+    /**
+     * Method that  returns a CardDealingStrategy for Fool.
+     * 6 cards per player, 1 card in additional "Trump card" stack.
+     * @return Specific strategy.
+     */
     public static CardDealingStrategy foolCardDealingStrategy(){
         return (deck, players) -> {
             Map<String, List<Card>> cards = new HashMap<>();

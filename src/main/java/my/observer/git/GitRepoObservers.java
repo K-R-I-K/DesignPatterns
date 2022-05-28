@@ -5,11 +5,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class that implements method that create Repository and methods to merge and commit branches.
+ * It lets define a subscription mechanism to notify multiple objects about any events that happen with the object they’re observing.
+ */
 public class GitRepoObservers {
 
+    /**
+     * Method that create Repository.
+     * It supports commits to various branches and merges between branches.
+     * Also, it supports WebHooks - observers that observes commit or merge events.
+     * @return It's Repository with implementation of its methods.
+     */
     public static Repository newRepository(){
         return new Repository() {
-            List<WebHook> branches = new ArrayList<>();
+            final List<WebHook> branches = new ArrayList<>();
             @Override
             public void addWebHook(WebHook webHook) {
                 branches.add(webHook);
@@ -27,6 +37,7 @@ public class GitRepoObservers {
                 return com;
             }
 
+            @SuppressWarnings("OptionalGetWithoutIsPresent")
             @Override
             public void merge(String sourceBranch, String targetBranch) {
                 if(branches.stream().filter(webHook -> webHook.type() == Event.Type.MERGE).noneMatch(webHook -> webHook.branch().equals(targetBranch))){
@@ -62,7 +73,7 @@ public class GitRepoObservers {
                 mergeCommit = mergeCommit.stream().distinct().collect(Collectors.toList());
 
                 List<Commit> temp = new ArrayList<>();
-                target.caughtEvents().stream().map(Event::commits).forEach(commits -> temp.addAll(commits));
+                target.caughtEvents().stream().map(Event::commits).forEach(temp::addAll);
                 mergeCommit.removeAll(temp);
 
                 merge.caughtEvents().add(new Event(Event.Type.MERGE,targetBranch,mergeCommit));
@@ -70,9 +81,14 @@ public class GitRepoObservers {
         };
     }
 
+    /**
+     * Method that returns a WebHook that observes merge events for a target branch.
+     * @param branchName branch to merge.
+     * @return updated webhook after merge.
+     */
     public static WebHook mergeToBranchWebHook(String branchName){
         return new WebHook() {
-            List<Event> events = new ArrayList<>();
+            final List<Event> events = new ArrayList<>();
             @Override
             public String branch() {
                 return branchName;
@@ -95,9 +111,14 @@ public class GitRepoObservers {
         };
     }
 
+    /**
+     * Method that returns a WebHook that observes commit events for a target branch.
+     * @param branchName branch to commit.
+     * @return updated webhook after commit.
+     */
     public static WebHook commitToBranchWebHook(String branchName){
         return new WebHook() {
-            List<Event> events = new ArrayList<>();
+            final List<Event> events = new ArrayList<>();
             @Override
             public String branch() {
                 return branchName;
