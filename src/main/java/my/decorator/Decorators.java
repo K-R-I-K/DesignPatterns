@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class that implement Decorator pattern to List<String> object.
+ * Class that implement Decorator pattern to List of String object.
  * The output object must have some "read" methods.
  * That lets attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.
  */
