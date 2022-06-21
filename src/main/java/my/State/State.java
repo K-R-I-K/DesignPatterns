@@ -1,4 +1,4 @@
-package State;
+package my.State;
 
 // It is a behavioral design pattern that allows objects to
 // change their behavior depending on their condition.

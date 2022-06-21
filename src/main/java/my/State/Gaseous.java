@@ -1,4 +1,4 @@
-package State;
+package my.State;
 
 public class Gaseous extends State {
 

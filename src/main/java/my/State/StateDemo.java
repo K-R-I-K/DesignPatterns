@@ -1,4 +1,4 @@
-package State;
+package my.State;
 
 public class StateDemo {
     public static void main(String[] args) {
