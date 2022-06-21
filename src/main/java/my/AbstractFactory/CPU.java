@@ -1,4 +1,4 @@
-package AbstractFactory;
+package my.AbstractFactory;
 
 public interface CPU
 {

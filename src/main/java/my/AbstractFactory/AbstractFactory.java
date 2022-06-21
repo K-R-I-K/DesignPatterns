@@ -1,4 +1,4 @@
-package AbstractFactory;
+package my.AbstractFactory;
 
 // It is the generating pattern of design that allows you
 // to create families of related objects without

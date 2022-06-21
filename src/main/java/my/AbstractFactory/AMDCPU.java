@@ -1,4 +1,4 @@
-package AbstractFactory;
+package my.AbstractFactory;
 
 public class AMDCPU implements CPU
 {
